@@ -1,4 +1,4 @@
-# CAS for Advance-Web
+# CAS for Advance Web
 
 Here is how to get it running for Advance 2016 on Windows 2012 with IIS 8.5. The process should be similar for other versions of Advance on other IIS versions, but this combo is the only one tested so far. 
 
