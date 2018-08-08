@@ -2,13 +2,12 @@
 
 Here is how to get it running for Advance 2016 on Windows 2012 with IIS 8.5. The process should be similar for other versions of Advance on other IIS versions, but this combo is the only one tested so far. 
 
-## Issues
-* First login works well, but trying to log in again results in a redirect loop login.aspx, confidentiality.aspx, and default.aspx.
-
 ## Instructions
 1. Get the CAS client. The offical project page is https://wiki.jasig.org/display/CASC/.Net+Cas+Client,
 but the github page seems to be better maintained: https://github.com/apereo/dotnet-cas-client. On github, there is a link to releases. We used v1.1.0.
+
 2. Put the DotNetCasClient.dll file into the /bin directory of Advance Web (e.g. C:⧵inetpub⧵wwwroot⧵Advance2016⧵bin)
+
 3. Update web.config in the Advance site directory. For details on this configuration see the github page for the CAS module: https://github.com/apereo/dotnet-cas-client. Additional information can be found by googling for the web.config reference. Here are the changes we made.
 
    * Add to configSections:
