@@ -1,6 +1,6 @@
 # CAS for Advance Web
 
-Here is how to get it running for Advance 2016 on Windows 2012 with IIS 8.5. The process should be similar for other versions of Advance on other IIS versions, but this combo is the only one tested so far. 
+Here is how to get CAS authentication with Advance 2016 on Windows 2012 with IIS 8.5. The process should be similar for other versions of Advance on other IIS versions, but this combo is the only one tested so far. 
 
 ## Instructions
 1. Get the CAS client. The offical project page is https://wiki.jasig.org/display/CASC/.Net+Cas+Client,
