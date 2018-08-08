@@ -34,6 +34,7 @@ but the github page seems to be better maintained: https://github.com/apereo/dot
    <authentication mode="Forms">
         <forms
           loginUrl="https://my.cas.server.edu/cas/login"
+          name="ASP.NET_SessionId"
           timeout="30"
           defaultUrl="~/Default.aspx"
           cookieless="UseCookies"
@@ -72,4 +73,8 @@ but the github page seems to be better maintained: https://github.com/apereo/dot
    <add key="SecurityProviderType" value="advWebServerPreauthenticated" />
    <add key="SecurityProviderArgs" value="AUTH_USER" />
    ```
-4. Edit the authentication on the app folder in the default site (if that is where the site lives) and ensure that anonymous auth is disabled and forms auth is enabled.
+4. Edit the authentication on the app folder and ensure that anonymous auth is disabled and forms auth is enabled. In our case, we have the following structure in IIS: Sites > AdvanceDev > Advance2016. The Advance2016 folder is the level to make this change on to the authentication. The AdvanceDev should still allow anonymous users to allow a redirect to the Advance2016 folder.
+
+5. Change the session state cookie name. By default, the session state cookie name is ASP.NET_SessionId, which is the same as the name of the cookie used by forms authentication. If they are both have the same name, Advance will allow users to login the first time, but users will end up in a redirect loop when the attemping to log in any time in the future. It is also critical that the forms authentication cookie name remain ASP.NET_SessionId, as that is the name of a cookie that Advance's logout code will invalidate when the user hits the logout link. If the form authentication cookie is named something else, the logout operation will not clear the cookie, and the user will remain logged in.
+
+
