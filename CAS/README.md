@@ -82,7 +82,7 @@ but the github page seems to be better maintained: https://github.com/apereo/dot
 
 6. To fix the double login issue when the user times out and still has the Advance Web browser window open, we need to modify the Session.js file in wwwroot/Advance2016/js. The modified function is included below. These changes send the user to the logout.aspx page when the session is about to expire, which will kill the AuthToken and cleanly log out the user. There are three changes:
    1. Change the zero in ```if (secondsUntilTimeout < 0) {``` to 20
-   2. Change Session.Login() to Session.LogOut(); on the next line
+   2. Change Session.OpenLogin() to Session.LogOut(); on the next line
    3. Add -20 to $("#SessionTimeoutSeconds").text(Math.round(secondsUntilTimeout));
    ```
    Session.PerformCheck = function () {
