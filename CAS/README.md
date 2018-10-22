@@ -38,7 +38,7 @@ but the github page seems to be better maintained: https://github.com/apereo/dot
       notAuthorizedUrl="~/NotAuthorized.aspx"
       cookiesRequiredUrl="~/CookiesRequired.aspx"
       redirectAfterValidation="true"
-      renew="false"
+      renew="true"
       singleSignOut="true"
       ticketValidatorName="Cas20"
       serviceTicketManager="CacheServiceTicketManager" />
