@@ -6,6 +6,17 @@ Here is how to get CAS authentication with Advance 2016 on Windows 2012 with IIS
 ### Double login
 The  double login is caused by the AuthToken cookie. Advance checks the AuthToken to see if it is set whenever you hit Advance. If the user is not logged in but the AuthToken is set, Advance kills the AuthToken cookie and the ASP.NET_SessionId cookie. Since an unathenticated user will go directly to CAS, Advance won't kill these cookies until the user enters CAS credentials. Killing the ASP.NET_SessionId cookie causes the user to be sent back to CAS. The key is to kill the AuthToken whenever possible to prevent this scenario. The AuthToken is killed by the user explicity logging out by hitting the logout.aspx page. We can easily fix one cause of the lingering AuthToken by modifying the Session.js file. Instructions are included below for this fix. However, if the user times out and the Advance window is no longer open in the browser, there is no way to kill the AuthToken and prevent the double login.
 
+Here is a simple outline of the cycle
+1. User enters URL for Advance Web
+1. User is redirected to CAS login page without actually hitting Advance Web
+1. User enters credentials and submits CAS login form
+1. CAS redirects to Advance Web and the ASP.NET_SessionId cookie is set
+1. Advance Web sees the AuthToken cookie and kills it and the ASP.NET_SessionId cookie, requiring the user to go back to CAS for authentication
+1. User enters credentials and submits CAS login form
+1. CAS redirects to Advance Web and the ASP.NET_SessionId cookie is set
+1. Advance Web sees the AuthToken cookie IS NOT SET, so Advance sets it and the user is logged in
+
+
 ## Instructions
 1. Get the CAS client. The offical project page is https://wiki.jasig.org/display/CASC/.Net+Cas+Client,
 but the github page seems to be better maintained: https://github.com/apereo/dotnet-cas-client. On github, there is a link to releases. We used v1.1.0.
