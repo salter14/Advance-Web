@@ -3,7 +3,7 @@
 Here is how to get CAS authentication with Advance 2016 on Windows 2012 with IIS 8.5. The process should be similar for other versions of Advance on other IIS versions, but this combo is the only one tested so far. 
 
 ## Known issues
-###Double login
+### Double login
 The  double login is caused by the AuthToken cookie. Advance checks the AuthToken to see if it is set whenever you hit Advance. If the user is not logged in but the AuthToken is set, Advance kills the AuthToken cookie and the ASP.NET_SessionId cookie. Since an unathenticated user will go directly to CAS, Advance won't kill these cookies until the user enters CAS credentials. Killing the ASP.NET_SessionId cookie causes the user to be sent back to CAS. The key is to kill the AuthToken whenever possible to prevent this scenario. The AuthToken is killed by the user explicity logging out by hitting the logout.aspx page. We can easily fix one cause of the lingering AuthToken by modifying the Session.js file. Instructions are included below for this fix. However, if the user times out and the Advance window is no longer open in the browser, there is no way to kill the AuthToken and prevent the double login.
 
 ## Instructions
