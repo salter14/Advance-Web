@@ -21,6 +21,7 @@ window.onload = function () {
 		if (top.TabHandler.GetSelectedTabName() == 'linky_tab') {
 			console.log("tab is linkytab");
 			try {
+				// Timeout prevents issues with page load timing
 				setTimeout(function () {
 					top.TabHandler.RedirectTab('Action.aspx?PageId=' + param_array['page_id'] + '&AppId=' +
 					param_array['app_id'] + '&idnumber=' + param_array['id_number']);
